@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { VideoItem } from "../../components/VideoItem";
-
+import { search } from "../../api/async";
 export const Videos = () => {
   const { keyword } = useParams();
   const {
@@ -11,11 +11,7 @@ export const Videos = () => {
     data: videos,
   } = useQuery({
     queryKey: ["videos", keyword],
-    queryFn: async () => {
-      return fetch(`/data/${keyword ? "search" : "popular"}.json`)
-        .then((res) => res.json())
-        .then((data) => data.items);
-    },
+    queryFn: () => search(keyword),
   });
 
   if (isLoading) return "Loading...";
@@ -24,7 +20,7 @@ export const Videos = () => {
 
   return (
     <>
-      <div>비디오 {keyword ? `${keyword}` : "인기 영상"}</div>;
+      <div>비디오 {keyword ? `${keyword}` : "인기 영상"}</div>
       {/* {isLoading && <p>로딩중..</p>} */}
       {videos && (
         <ul>
