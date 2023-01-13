@@ -2,16 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { VideoItem } from "../../components/VideoItem";
-import { search } from "../../api/async";
+// import { search, Youtube } from "../../api/async";
+import { MockAsync } from "../../api/mockasync";
+import { useYoutubeApi } from "../../context/YoutubeApiContext";
 export const Videos = () => {
   const { keyword } = useParams();
+  const { youtube } = useYoutubeApi();
   const {
     isLoading,
     error,
     data: videos,
   } = useQuery({
     queryKey: ["videos", keyword],
-    queryFn: () => search(keyword),
+    queryFn: () => youtube.search(keyword),
   });
 
   if (isLoading) return "Loading...";

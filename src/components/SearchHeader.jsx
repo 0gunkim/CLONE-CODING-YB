@@ -1,18 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { BsSearch, BsYoutube } from "react-icons/bs";
 import { Link, useNavigate, useParams } from "react-router-dom";
 export default function SearchHeader() {
   const { keyword } = useParams();
   const navigate = useNavigate();
   const refKeyWord = useRef();
-  const inputValue = () => refKeyWord.current.value;
-  // console.log(inputValue);
   const onSubmitHandle = (e) => {
     e.preventDefault();
-    console.log(refKeyWord.current.value);
-    navigate(`/videos/${inputValue()}`);
+    const inputValue = refKeyWord.current.value;
+    navigate(`/videos/${inputValue}`);
   };
-  useEffect(() => {}, [keyword]);
+  useEffect(() => {
+    keyword
+      ? (refKeyWord.current.value = keyword)
+      : (refKeyWord.current.value = "");
+  }, [keyword]);
   return (
     <header className="w-full flex p-4 mb-4 text-2xl border-b border-zinc-600 ">
       <Link to="/" className="flex items-center">
