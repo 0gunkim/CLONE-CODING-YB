@@ -1,13 +1,13 @@
 import { createContext, useContext } from "react";
-import { YoutubeClient } from "../api/youtubeClient";
+import { yclient } from "../api/youtube";
 import MockAsync from "../api/mockasync";
-import Youtube from "../api/async";
+import YoutubeAsync from "../api/async";
 
 export const YoutubeApiContext = createContext();
 
 const client = new MockAsync();
-// const client = new YoutubeClient();
-const youtube = new Youtube(client);
+// const client = new yclient();
+const youtube = new YoutubeAsync(client);
 
 export function YotubeApiProvider({ children }) {
   return (

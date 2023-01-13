@@ -16,7 +16,7 @@ body {
   @apply bg-sky-700 text-gray-100;
 }
 #root {
-  @apply w-full max-w-4xl;
+  @apply w-full max-w-5xl;
 }
 
 code {
