@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function videoDetail() {
-  return <div>videosDetail</div>;
+  return (
+    <>
+      <div>videosDetail</div>
+    </>
+  );
 }
