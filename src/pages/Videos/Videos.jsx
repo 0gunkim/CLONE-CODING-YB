@@ -21,6 +21,7 @@ export const Videos = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
+  console.log(videos);
   return (
     <>
       <div>비디오 {keyword ? `${keyword}` : "인기 영상"}</div>
