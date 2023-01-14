@@ -4,9 +4,10 @@ import { useYoutubeApi } from "../context/YoutubeApiContext";
 
 export const AboutChannel = ({ id, name }) => {
   const { youtube } = useYoutubeApi();
+  console.log(id);
   const { data: url } = useQuery({
     queryKey: ["channel", id],
-    queryFn: () => youtube.channelImagURL(id),
+    queryFn: () => youtube.channelImageURL(id),
     staleTime: 1000 * 60 * 5,
   });
   console.log(url);
